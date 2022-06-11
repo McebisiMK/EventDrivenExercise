@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=<server>\;Database=<DbName>;User Id=<user>;Password=<Password>;" Microsoft.EntityFrameworkCore.SqlServer -o "Models/Entities" --context-dir "Models" -c EventDrivenDbContext --force
