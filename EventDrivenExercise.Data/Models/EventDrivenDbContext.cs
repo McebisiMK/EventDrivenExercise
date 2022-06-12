@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using EventDrivenExercise.Data.Models.Entities;
 
 namespace EventDrivenExercise.Data.Models
@@ -21,9 +24,9 @@ namespace EventDrivenExercise.Data.Models
         {
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("User");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
@@ -33,14 +36,9 @@ namespace EventDrivenExercise.Data.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.Idnumber)
+                entity.Property(e => e.IdNumber)
                     .HasMaxLength(13)
-                    .IsUnicode(false)
-                    .HasColumnName("IDNumber");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LastName)
                     .HasMaxLength(20)
@@ -49,17 +47,13 @@ namespace EventDrivenExercise.Data.Models
 
             modelBuilder.Entity<UserAuditLog>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("UserAuditLog");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Event)
                     .HasMaxLength(300)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID");
 
                 entity.Property(e => e.Type)
                     .HasMaxLength(20)
