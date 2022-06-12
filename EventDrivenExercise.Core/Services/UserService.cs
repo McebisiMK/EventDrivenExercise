@@ -28,7 +28,7 @@ namespace EventDrivenExercise.Core.Services
         {
             try
             {
-                var newUser = _mapper.Map<User>(user);
+                var newUser = Map<User, UserDTO>(user);
                 await _unitOfWork.UserRepository.AddAsync(newUser);
                 await _unitOfWork.SaveChangesAsync();
                 user.Id = newUser.Id;
@@ -56,7 +56,7 @@ namespace EventDrivenExercise.Core.Services
                 _unitOfWork.UserRepository.Delete(existingUser);
                 await _unitOfWork.SaveChangesAsync();
 
-                var user = _mapper.Map<UserDTO>(existingUser);
+                var user = Map<UserDTO, User>(existingUser);
                 await OnUserDeleted(user);
             }
             catch (Exception exception)
@@ -75,7 +75,7 @@ namespace EventDrivenExercise.Core.Services
                     throw new InvalidUserException("User does not exist");
 
                 var oldUser = _unitOfWork.UserRepository.GetBy(user => user.Id.Equals(updatedUser.Id)).FirstOrDefault();
-                var user = _mapper.Map<User>(updatedUser);
+                var user = Map<User, UserDTO>(updatedUser);
 
                 _unitOfWork.UserRepository.UpdateAsync(user);
                 await _unitOfWork.SaveChangesAsync();
@@ -118,6 +118,11 @@ namespace EventDrivenExercise.Core.Services
         {
             exception = exception.InnerException ?? exception;
             throw new InvalidUserException($"{operation}. Error: {exception.Message}");
+        }
+
+        private TResponse Map<TResponse, TEntity>(TEntity entity)
+        {
+            return _mapper.Map<TResponse>(entity);
         }
     }
 }
