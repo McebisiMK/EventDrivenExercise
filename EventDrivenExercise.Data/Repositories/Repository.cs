@@ -38,7 +38,7 @@ namespace EventDrivenExercise.Data.Repositories
 
         public IQueryable<TEntity> GetBy(Expression<Func<TEntity, bool>> expression)
         {
-            return _dbSet.Where(expression);
+            return _dbSet.Where(expression).AsNoTracking();
         }
     }
 }
