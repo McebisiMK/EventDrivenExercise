@@ -5,14 +5,15 @@ using EventDrivenExercise.Common.Exceptions;
 using EventDrivenExercise.Core.Abstractions;
 using EventDrivenExercise.Data.Abstractions;
 using EventDrivenExercise.Data.Models.Entities;
+using Microsoft.VisualStudio.Threading;
 
 namespace EventDrivenExercise.Core.Services
 {
     public class UserService : IUserService
     {
-        public event EventHandler<UserAddedEventArguments> OnUserCreatedEvent;
-        public event EventHandler<UserUpdatedEventArguments> OnUserUpdatedEvent;
-        public event EventHandler<UserDeletedEventArguments> OnUserDeletedEvent;
+        public event AsyncEventHandler<UserAddedEventArguments> OnUserCreatedEvent;
+        public event AsyncEventHandler<UserUpdatedEventArguments> OnUserUpdatedEvent;
+        public event AsyncEventHandler<UserDeletedEventArguments> OnUserDeletedEvent;
 
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -32,7 +33,7 @@ namespace EventDrivenExercise.Core.Services
                 await _unitOfWork.SaveChangesAsync();
                 user.Id = newUser.Id;
 
-                OnUserCreated(user);
+                await OnUserCreated(user);
             }
             catch (Exception exception)
             {
@@ -56,7 +57,7 @@ namespace EventDrivenExercise.Core.Services
                 await _unitOfWork.SaveChangesAsync();
 
                 var user = _mapper.Map<UserDTO>(existingUser);
-                OnUserDeleted(user);
+                await OnUserDeleted(user);
             }
             catch (Exception exception)
             {
@@ -79,7 +80,7 @@ namespace EventDrivenExercise.Core.Services
                 _unitOfWork.UserRepository.UpdateAsync(user);
                 await _unitOfWork.SaveChangesAsync();
 
-                OnUserUpdated(oldUser, updatedUser);
+                await OnUserUpdated(oldUser, updatedUser);
             }
             catch (Exception exception)
             {
@@ -90,19 +91,19 @@ namespace EventDrivenExercise.Core.Services
             return updatedUser;
         }
 
-        protected virtual void OnUserCreated(UserDTO user)
+        protected virtual async Task OnUserCreated(UserDTO user)
         {
-            OnUserCreatedEvent?.Invoke(this, new UserAddedEventArguments { User = user });
+            await OnUserCreatedEvent?.InvokeAsync(this, new UserAddedEventArguments { User = user });
         }
 
-        protected virtual void OnUserDeleted(UserDTO user)
+        protected virtual async Task OnUserDeleted(UserDTO user)
         {
-            OnUserDeletedEvent?.Invoke(this, new UserDeletedEventArguments { DeletedUser = user });
+            await OnUserDeletedEvent?.InvokeAsync(this, new UserDeletedEventArguments { DeletedUser = user });
         }
 
-        protected virtual void OnUserUpdated(User oldUser, UserDTO user)
+        protected virtual async Task OnUserUpdated(User oldUser, UserDTO user)
         {
-            OnUserUpdatedEvent?.Invoke
+            await OnUserUpdatedEvent?.InvokeAsync
             (
                 this,
                 new UserUpdatedEventArguments
