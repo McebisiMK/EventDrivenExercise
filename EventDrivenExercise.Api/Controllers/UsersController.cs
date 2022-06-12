@@ -9,10 +9,13 @@ namespace EventDrivenExercise.Api.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IUserAuditLogService _userAuditLogService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IUserAuditLogService userAuditLogService)
         {
             _userService = userService;
+            _userAuditLogService = userAuditLogService;
+            _userAuditLogService.Subscribe(_userService);
         }
 
         [HttpPost("add")]
