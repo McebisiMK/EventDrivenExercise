@@ -13,6 +13,7 @@ builder.Services.AddDbContext<EventDrivenDbContext>(options => options.UseSqlSer
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserAuditLogService, UserAuditLogService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddControllers();
