@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EventDrivenExercise.Data\EventDrivenExercise.Data.csproj" />
+    <ProjectReference Include="..\EventDrivenExercise.Core\EventDrivenExercise.Core.csproj" />
+    <ProjectReference Include="..\EventDrivenExercise.Common\EventDrivenExercise.Common.csproj" />
   </ItemGroup>
 
 </Project>
