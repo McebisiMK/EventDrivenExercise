@@ -2,6 +2,7 @@ using AutoMapper;
 using EventDrivenExercise.Common.DTOs;
 using EventDrivenExercise.Common.EventArgurments;
 using EventDrivenExercise.Common.Exceptions;
+using EventDrivenExercise.Common.Extensions;
 using EventDrivenExercise.Core.Abstractions;
 using EventDrivenExercise.Data.Abstractions;
 using EventDrivenExercise.Data.Models.Entities;
@@ -28,6 +29,7 @@ namespace EventDrivenExercise.Core.Services
         {
             try
             {
+                Validate(user);
                 var newUser = Map<User, UserDTO>(user);
                 await _unitOfWork.UserRepository.AddAsync(newUser);
                 await _unitOfWork.SaveChangesAsync();
@@ -112,6 +114,12 @@ namespace EventDrivenExercise.Core.Services
                     CurrentUser = user
                 }
             );
+        }
+
+        private void Validate(UserDTO user)
+        {
+            if (user.FirstName.IsEmpty() || user.LastName.IsEmpty() || user.Email.IsEmpty() || user.IdNumber.IsEmpty())
+                throw new InvalidUserException("All user properties must have a valid value");
         }
 
         private void LogException(string operation, Exception exception)
