@@ -47,6 +47,13 @@ Data Access Project (ORM and tables)
  - [Repositories](https://github.com/McebisiMK/EventDrivenExercise/tree/main/EventDrivenExercise.Data/Repositories)
 	 - [Generic repository](https://github.com/McebisiMK/EventDrivenExercise/blob/main/EventDrivenExercise.Data/Repositories/Repository.cs) and [Unit of Work](https://github.com/McebisiMK/EventDrivenExercise/blob/main/EventDrivenExercise.Data/Repositories/UnitOfWork.cs)
 
+Tests Project (Unit test)
+-
+- [Test Data](https://github.com/McebisiMK/EventDrivenExercise/tree/main/EventDrivenExercise.Tests/TestData)
+	- Test data for various test scenarios.
+- [Services](https://github.com/McebisiMK/EventDrivenExercise/tree/main/EventDrivenExercise.Tests/Services)
+	- Services unit tests.
+
 Tech Use
 -
 - **[.Net Core 6](https://docs.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0)**
