@@ -53,3 +53,6 @@ Tech Use
 - **[Entity Framework Core](https://www.entityframeworktutorial.net/efcore/entity-framework-core.aspx)**
 - **[AutoMapper](https://docs.automapper.org/en/stable/Getting-started.html)**
 - **[Swagger UI](https://swagger.io/tools/swagger-ui/)**
+- **[NUnit](https://nunit.org/)**
+- **[NSubstitute](https://nsubstitute.github.io/help/getting-started/)**
+- **[Fluent Assertions](https://fluentassertions.com/introduction)**
