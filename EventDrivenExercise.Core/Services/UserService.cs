@@ -79,7 +79,7 @@ namespace EventDrivenExercise.Core.Services
                 var oldUser = _unitOfWork.UserRepository.GetBy(user => user.Id.Equals(updatedUser.Id)).FirstOrDefault();
                 var user = Map<User, UserDTO>(updatedUser);
 
-                _unitOfWork.UserRepository.UpdateAsync(user);
+                _unitOfWork.UserRepository.Update(user);
                 await _unitOfWork.SaveChangesAsync();
 
                 await OnUserUpdated(oldUser, updatedUser);

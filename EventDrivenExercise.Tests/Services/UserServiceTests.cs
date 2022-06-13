@@ -134,7 +134,7 @@ namespace EventDrivenExercise.Tests.Services
 
             //-----------------------------------Assert--------------------------------------------
             exception.Message.Should().Be(expectedErrorMessage);
-            unitOfWork.UserRepository.Received(0).UpdateAsync(Arg.Any<User>());
+            unitOfWork.UserRepository.Received(0).Update(Arg.Any<User>());
             userUpdatedEventRaised.Should().BeFalse();
         }
 
@@ -155,7 +155,7 @@ namespace EventDrivenExercise.Tests.Services
 
             //-----------------------------------Assert-------------------------------------------------
             actual.Should().BeEquivalentTo(user);
-            unitOfWork.UserRepository.Received(1).UpdateAsync(Arg.Any<User>());
+            unitOfWork.UserRepository.Received(1).Update(Arg.Any<User>());
             userUpdatedEventRaised.Should().BeTrue();
         }
 

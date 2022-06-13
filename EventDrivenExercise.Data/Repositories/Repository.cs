@@ -26,7 +26,7 @@ namespace EventDrivenExercise.Data.Repositories
             _eventDrivenDbContext.Remove(entity);
         }
 
-        public void UpdateAsync(TEntity updatedEntity)
+        public void Update(TEntity updatedEntity)
         {
             _eventDrivenDbContext.Update(updatedEntity);
         }
