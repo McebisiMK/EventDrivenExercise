@@ -54,7 +54,7 @@ Tests Project (Unit test)
 - [Services](https://github.com/McebisiMK/EventDrivenExercise/tree/main/EventDrivenExercise.Tests/Services)
 	- Services unit tests.
 
-Tech Use
+Tech Used
 -
 - **[.Net Core 6](https://docs.microsoft.com/en-us/aspnet/core/release-notes/aspnetcore-6.0?view=aspnetcore-6.0)**
 - **[Entity Framework Core](https://www.entityframeworktutorial.net/efcore/entity-framework-core.aspx)**
