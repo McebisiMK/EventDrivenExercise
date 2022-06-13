@@ -1,4 +1,4 @@
-
+[![Continuous Integration and deployment](https://github.com/McebisiMK/EventDrivenExercise/actions/workflows/pipeline.yml/badge.svg)](https://github.com/McebisiMK/EventDrivenExercise/actions/workflows/pipeline.yml)
 # Event Driven Exercise
 
 Api Project (Api entry point)
