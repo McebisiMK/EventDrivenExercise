@@ -56,3 +56,4 @@ Tech Use
 - **[NUnit](https://nunit.org/)**
 - **[NSubstitute](https://nsubstitute.github.io/help/getting-started/)**
 - **[Fluent Assertions](https://fluentassertions.com/introduction)**
+- **[GitHub Actions](https://docs.github.com/en/actions)**
